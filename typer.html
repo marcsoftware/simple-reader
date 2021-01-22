@@ -4,20 +4,24 @@
 <meta charset="UTF-8">
 <style>
 
- pre {
-  overflow-x: auto;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  word-wrap: break-word;
+ #data {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        word-wrap:break-word;
+        white-space: normal;
+        max-height: 500px;
 
-width: 500px;
-  transform: rotate(-90deg);
-  background-color: red;
 
+        float:right;
+        
+        padding:15px;
 }
 
+
+body{
+    background-color: black;
+    color:white;
+}
 </style>
 <body>
 
@@ -43,7 +47,7 @@ function init() {
 
 
 
-  doGet('01jediquest');  
+  doGet('test');  
 }
 
 
