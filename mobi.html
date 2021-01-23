@@ -44,6 +44,7 @@ body{
  var PAGE_SIZE=50;
  var pageNumber=0;
  var lastPage=0;
+ var book_name="jedi";
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
@@ -52,12 +53,56 @@ function init() {
 
 
 
-  doGet('jedi');  
+  doGet(book_name);  
 
 
   document.body.addEventListener('click', handleClick, true); 
 
 }
+
+
+/**
+//---------------------------------------------------------------------
+//
+//---------------------------------------------------------------------
+*/
+
+var global_token='';
+function getCookie(x) {
+  var cname=x;
+  
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      var result = c.substring(name.length, c.length);
+      
+      
+      return result;
+    }
+  }
+  return "";
+}
+
+
+/**
+//---------------------------------------------------------------------
+//
+//---------------------------------------------------------------------
+*/
+
+  function ceateCookie(){
+    
+    document.cookie = 
+    `book_name='${book_name}';page='${pageNumber}';SameSite=None; Secure; expires=Thu, 18 Dec 3013 12:00:00 UTC`; 
+     
+          
+  }
 
 
 //-----------------------------------------------------------------------------
