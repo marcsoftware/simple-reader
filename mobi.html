@@ -47,7 +47,7 @@ function init() {
 
 
 
-  doGet('test');  
+  doGet('jedi');  
 }
 
 
@@ -81,7 +81,7 @@ var global_file='';
 
 
 
-         document.getElementById('data').innerHTML=data;
+         document.getElementById('data').innerHTML=data.replace(/[\n\r]/g,"<br/>");
          
         
         
