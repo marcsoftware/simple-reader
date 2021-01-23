@@ -45,7 +45,7 @@ body{
  var pageNumber=0;
  var lastPage=0;
  var book_name="jedi";
- window.onload=init();
+ window.onload=init;
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
@@ -53,12 +53,12 @@ body{
 function init() {
 
   pageNumber = (getCookie('pageNumber'));
-  console.log(parseInt(pageNumber)); 
+  pageNumber=pageNumber.replace(/[\'\"]/g,"");
   doGet(book_name);  
 
 
   document.body.addEventListener('click', handleClick, true); 
-
+  turnPage(0);
 }
 
 
@@ -123,6 +123,7 @@ function turnPage(number){
   if(pageNumber<0 || !pageNumber){
     pageNumber=0;
   }
+
   document.getElementById('pageNumber').innerHTML=pageNumber +' / '+Math.ceil(lastPage/PAGE_SIZE);
 }
 
