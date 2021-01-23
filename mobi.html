@@ -15,12 +15,14 @@
         float:right;
         
         padding:15px;
+        user-select: none;
 }
 
 
 body{
-    background-color: black;
-    color:white;
+    background-color: #202530;
+    color:lightblue;
+    font-size: 20px;
 }
 </style>
 <body>
@@ -39,6 +41,9 @@ body{
  
  var file_name;
  window.onload=init();
+ var PAGE_SIZE=50;
+ var pageNumber=0;
+ var lastPage=0;
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
@@ -48,13 +53,38 @@ function init() {
 
 
   doGet('jedi');  
+
+
+  document.body.addEventListener('click', handleClick, true); 
+
 }
 
 
+//-----------------------------------------------------------------------------
+//
+//-----------------------------------------------------------------------------
+function handleClick(){
+  turnPage(1);
+}
 
 
+//-----------------------------------------------------------------------------
+//
+//-----------------------------------------------------------------------------
+function turnPage(number){
+  pageNumber +=number;
+  if(pageNumber<0){
+    pageNumber=0;
+  }
+  document.getElementById('pageNumber').innerHTML=pageNumber +' / '+Math.ceil(lastPage/PAGE_SIZE);
+}
 
-
+window.oncontextmenu = function ()
+{
+    
+    turnPage(-1);
+    return false;     // cancel default menu
+}
 
 //-----------------------------------------------------------------------------
 //
@@ -80,7 +110,7 @@ var global_file='';
          //data = data.replace(/[\n\r][\n\r][\n\r]+/g,"\n\n");
 
 
-
+         lastPage=file.length;
          document.getElementById('data').innerHTML=data.replace(/[\n\r]/g,"<br/>");
          
         
@@ -93,7 +123,7 @@ var global_file='';
 
 </script>
 
-
+<span id='pageNumber'>|</span>
 <pre id='data'>x</pre><br/>
 
 
