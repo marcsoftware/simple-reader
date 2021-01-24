@@ -16,14 +16,14 @@
         
         padding:15px;
         user-select: none;
-        border-style: dotted dashed solid double;
+        border-style: none none none double;
 }
 
 
 body{
-    background-color: #202530;
-    color:lightblue;
-    font-size: 20px;
+    background-color: #121212 ;
+    color:#0d00fa;
+    font-size: 15px;
 }
 </style>
 
@@ -42,7 +42,7 @@ body{
  
  var file_name;
  
- var PAGE_SIZE=20;
+ var PAGE_SIZE=10;
  var pageNumber=0;
  var lastPage=0;
  var book_name="jedi";
@@ -72,14 +72,22 @@ document.addEventListener("keyup", handleKeyUp);
 //-----------------------------------------------------------------------------
 var fontSize=15;
 function handleKeyUp(e){
+  
   if(e.code === "ArrowLeft"){
-      fontSize--;
+      fontSize-=0.25;
     document.getElementById('data').style.fontSize=`${fontSize}px`;
   }
 
   if(e.code === "ArrowRight"){
-    fontSize++;
+    fontSize+=0.25;
     document.getElementById('data').style.fontSize=`${fontSize}px`;
+  }
+
+  if(e.code === "KeyA"){
+       turnPage(-1);
+  createCookie();
+  renderPage();
+    
   }
 
 }
