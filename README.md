@@ -1,6 +1,10 @@
-A simple epub reader.
+you will need to convert you epub or mobi books to TXT
 
-TODO features
+https://askubuntu.com/questions/102458/how-can-i-convert-epub-files-to-plain-text
+
+**A simple epub reader.**
+
+ Features: 
 
 * rotate right
 * nightmode
@@ -8,3 +12,9 @@ TODO features
 
 * remember last position
 * library of books.
+
+TODO features:
+
+ * read epub and mobi formats.
+
+   
