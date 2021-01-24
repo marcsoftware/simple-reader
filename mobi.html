@@ -52,7 +52,7 @@ body{
 //-----------------------------------------------------------------------------
    
 function init() {
-
+  book_name=getBookName();
   pageNumber = getCookie('lineNumber');
   pageNumber=pageNumber.replace(/[\'\"]/g,"");
   pageNumber=Math.floor(pageNumber/PAGE_SIZE);
@@ -63,9 +63,24 @@ document.getElementById('pageNumber').innerHTML=pageNumber;
 
 document.addEventListener("keyup", handleKeyUp);
   document.body.addEventListener('click', handleClick, true); 
+
+
   
 }
 
+//-----------------------------------------------------------------------------
+//
+//-----------------------------------------------------------------------------
+function getBookName(){
+ const queryString = window.location.search;
+  console.log(queryString);
+
+  const urlParams = new URLSearchParams(queryString);
+  
+   file_name = (urlParams+"").split("=")[1];
+  document.title=file_name;
+  return file_name;
+}
 
 //-----------------------------------------------------------------------------
 //
