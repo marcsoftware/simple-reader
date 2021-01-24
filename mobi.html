@@ -64,6 +64,8 @@ document.getElementById('pageNumber').innerHTML=pageNumber;
 document.addEventListener("keyup", handleKeyUp);
   document.body.addEventListener('click', handleClick, true); 
 
+  touchCookie();
+
 
   
 }
@@ -83,7 +85,7 @@ function getBookName(){
 }
 
 //-----------------------------------------------------------------------------
-//
+//  short cut keys
 //-----------------------------------------------------------------------------
 var fontSize=15;
 function handleKeyUp(e){
@@ -98,10 +100,30 @@ function handleKeyUp(e){
     document.getElementById('data').style.fontSize=`${fontSize}px`;
   }
 
-  if(e.code === "KeyA"){
+  if(e.code === "ArrowDown"){
+    
        turnPage(-1);
-  createCookie();
-  renderPage();
+       createCookie();
+      renderPage();
+    
+  }
+
+
+  if(e.code === "KeyR"){
+      book_name=getBookName();
+      pageNumber = getCookie('lineNumber');
+      pageNumber=pageNumber.replace(/[\'\"]/g,"");
+      pageNumber=Math.floor(pageNumber/PAGE_SIZE);
+      
+    
+  }
+
+
+  if(e.code === "ArrowUp"){
+    
+       turnPage(1);
+       createCookie();
+       renderPage();
     
   }
 
@@ -117,23 +139,10 @@ function handleKeyUp(e){
 var global_token='';
 function getCookie(x) {
   var cname=`${book_name}${x}`;
-  
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      var result = c.substring(name.length, c.length);
-      
-      
-      return result;
-    }
-  }
-  return "";
+  console.log('cookie: '+document.cookie);
+  var  result = localStorage.getItem(cname);
+
+return result;
 }
 
 
@@ -144,13 +153,24 @@ function getCookie(x) {
 */
 
   function createCookie(){
-    
-    document.cookie = 
-    `${book_name}lineNumber='${pageNumber*PAGE_SIZE}';SameSite=None; Secure; expires=Thu, 18 Dec 3013 12:00:00 UTC`; 
+    localStorage.setItem(`${book_name}lineNumber`,pageNumber*PAGE_SIZE );
+
      
           
   }
 
+
+/**
+//---------------------------------------------------------------------
+//
+//---------------------------------------------------------------------
+*/
+
+  function touchCookie(){
+      document.cookie = 
+    `SameSite=None; hostOnly:false; Secure;  path=/; expires=Thu, 18 Dec 3013 12:00:00 UTC`; 
+
+  }
 
 //-----------------------------------------------------------------------------
 //
