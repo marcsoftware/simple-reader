@@ -42,7 +42,7 @@ body{
  
  var file_name;
  
- var PAGE_SIZE=3;
+ var PAGE_SIZE=20;
  var pageNumber=0;
  var lastPage=0;
  var book_name="jedi";
@@ -53,8 +53,9 @@ body{
    
 function init() {
 
-  pageNumber = (getCookie('pageNumber'));
+  pageNumber = getCookie('lineNumber');
   pageNumber=pageNumber.replace(/[\'\"]/g,"");
+  pageNumber=Math.floor(pageNumber/PAGE_SIZE);
   doGet(book_name);  
 document.getElementById('pageNumber').innerHTML=pageNumber;
 
@@ -101,7 +102,7 @@ function getCookie(x) {
   function createCookie(){
     
     document.cookie = 
-    `pageNumber='${pageNumber}';SameSite=None; Secure; expires=Thu, 18 Dec 3013 12:00:00 UTC`; 
+    `lineNumber='${pageNumber*PAGE_SIZE}';SameSite=None; Secure; expires=Thu, 18 Dec 3013 12:00:00 UTC`; 
      
           
   }
@@ -111,7 +112,7 @@ function getCookie(x) {
 //
 //-----------------------------------------------------------------------------
 function handleClick(){
-  turnPage(1);
+  turnPage(-1);
   createCookie();
   renderPage();
 }
@@ -139,7 +140,7 @@ function turnPage(number){
 window.oncontextmenu = function ()
 {
     
-    turnPage(-1);
+    turnPage(1);
     createCookie();
     renderPage();
     return false;     // cancel default menu
