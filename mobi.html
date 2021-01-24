@@ -59,8 +59,29 @@ function init() {
   doGet(book_name);  
 document.getElementById('pageNumber').innerHTML=pageNumber;
 
+
+
+document.addEventListener("keyup", handleKeyUp);
   document.body.addEventListener('click', handleClick, true); 
   
+}
+
+
+//-----------------------------------------------------------------------------
+//
+//-----------------------------------------------------------------------------
+var fontSize=15;
+function handleKeyUp(e){
+  if(e.code === "ArrowLeft"){
+      fontSize--;
+    document.getElementById('data').style.fontSize=`${fontSize}px`;
+  }
+
+  if(e.code === "ArrowRight"){
+    fontSize++;
+    document.getElementById('data').style.fontSize=`${fontSize}px`;
+  }
+
 }
 
 
