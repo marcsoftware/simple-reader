@@ -54,9 +54,13 @@ body{
 function init() {
   book_name=getBookName();
   pageNumber = getCookie('lineNumber');
+  if(pageNumber===null){
+    pageNumber='0';
+  }
   pageNumber=pageNumber.replace(/[\'\"]/g,"");
   pageNumber=Math.floor(pageNumber/PAGE_SIZE);
   doGet(book_name);  
+
 document.getElementById('pageNumber').innerHTML=pageNumber;
 
 
