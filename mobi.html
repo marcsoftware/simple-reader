@@ -23,7 +23,7 @@
 body{
     background-color: #121212 ;
     color:#0d00fa;
-    font-size: 15px;
+    font-size: 25px;
 }
 </style>
 
@@ -94,17 +94,17 @@ function getBookName(){
 var fontSize=15;
 function handleKeyUp(e){
   
-  if(e.code === "ArrowLeft"){
+  if(e.code === "ArrowDown"){
       fontSize-=0.25;
     document.getElementById('data').style.fontSize=`${fontSize}px`;
   }
 
-  if(e.code === "ArrowRight"){
+  if(e.code === "ArrowUp"){
     fontSize+=0.25;
     document.getElementById('data').style.fontSize=`${fontSize}px`;
   }
 
-  if(e.code === "ArrowDown"){
+  if(e.code === "ArrowLeft"){
     
        turnPage(-1);
        createCookie();
@@ -123,7 +123,7 @@ function handleKeyUp(e){
   }
 
 
-  if(e.code === "ArrowUp"){
+  if(e.code === "ArrowRight"){
     
        turnPage(1);
        createCookie();
