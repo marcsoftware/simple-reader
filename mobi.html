@@ -85,6 +85,7 @@ function getBookName(){
   
    file_name = (urlParams+"").split("=")[1];
   document.title=file_name;
+  
   return file_name;
 }
 
@@ -190,7 +191,9 @@ function handleClick(){
 //-----------------------------------------------------------------------------
 function renderPage(){
     //document.getElementById('data').innerHTML=data.replace(/[\n\r]/g,"<br/>");
+ 
     document.getElementById('data').innerHTML=file.slice(pageNumber*PAGE_SIZE,pageNumber*PAGE_SIZE+PAGE_SIZE).join("<br/>");
+ 
 }
 
 //-----------------------------------------------------------------------------
@@ -220,6 +223,12 @@ window.oncontextmenu = function ()
 var global_length='';
 var global_file='';
  async  function doGet(url) {
+
+  
+
+    document.getElementById('data').innerHTML='you need to add mobi.html?book=lordoftherings';
+  
+  
     url = "books/"+url;
 
         url+='.txt';
